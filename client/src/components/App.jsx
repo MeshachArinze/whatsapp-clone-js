@@ -7,17 +7,17 @@ import { SocketProvider } from "../contexts/SocketProvider";
 
 function App() {
   const [id, setId] = useLocalStorage("id");
-
-  const dashBoard = (
-    <SocketProvider id={id}>
-      <ContactsProvider id={id}>
+const dashboard = (
+  <SocketProvider id={id}>
+    <ContactsProvider>
+      <ConversationsProvider id={id}>
         <Dashboard id={id} />
-      </ContactsProvider>
-    </SocketProvider>
-  )
-  return (
-    id ? dashBoard : <Login onIdSubmit={setId} />
-  )
+      </ConversationsProvider>
+    </ContactsProvider>
+  </SocketProvider>
+);
+
+return id ? dashboard : <Login onIdSubmit={setId} />;
 }
 
 export default App
