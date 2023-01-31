@@ -1,10 +1,14 @@
-import React from 'react'
-import { useContact } from "../contexts/ContactsProvider"
+import React from "react";
+import { useContacts } from "../contexts/ContactsProvider";
 
-const Contacts = () => {
+export default function Contacts() {
+  const { contacts } = useContacts();
+
   return (
-    <div>Contacts</div>
-  )
+    <div >
+      {contacts.map((contact) => (
+        <div key={contact.id}>{contact.name}</div>
+      ))}
+    </div>
+  );
 }
-
-export default Contacts
